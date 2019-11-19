@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import api from "../../services/api"
+import api from "../../services/api";
+import "./styles.css";
+import { Avatar } from "@material-ui/core";
 
 export default class Band extends Component {
     state = {
@@ -19,8 +21,13 @@ export default class Band extends Component {
 
         return (
             <div className="band-info">
-                <h1>{band.name}</h1>
-                <p>{band.biography}</p>
+                <img src={band.image}></img>
+                    <div>
+                        <h1>{band.name}</h1>
+                        <p>{band.genre}</p>
+                        <p>{band.numPlays} Plays</p>
+                    </div>                   
+                <p className="biography">{band.biography}</p>
             </div>
         );
     }

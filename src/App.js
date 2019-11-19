@@ -1,32 +1,44 @@
 import React, { Component } from 'react';
 //import HeaderSearch from "./components/headSearch"
 import api from './services/api';
-import { Button } from "@material-ui/core";
-import PaperBand from "./components/paperBand";
+//import { Button } from "@material-ui/core";
+//import PaperBand from "./components/paperBand";
 //import { ThemeProvider}
 import Header from "./components/Header"
-import Main from "./pages/main";
+//import Main from "./pages/main";
 import Routes from "./routes";
 
-// const App = () => (
-//   <div className="App">
-//     <Header />
-//     <Routes />
-//   </div>
-// );
-
-// export default App;
 class App extends Component {
+    constructor(props) {
+    super(props);
+    this.state = {
+      bands: []
+    };
+  }
+  getArrayFromApi = async () => {
+    const bands = await api.get("/bands");
+    this.setState({ bands: bands.data });
+    console.log(this.state.bands);
+   };
+
   render() {
     return (
       <div className="App">
-      <Header />
-      <paperBand />
+      <Header />      
       <Routes />
+
+      {/* <Button onClick={this.getArrayFromApi} variant="contained">
+           CLICA
+      </Button>
+      {this.state.bands.map(band => (
+          <PaperBand key={band.id} band={band}></PaperBand>
+      ))} */}
+
   </div>
     );
   }
 }
+
 export default App;
 
 
